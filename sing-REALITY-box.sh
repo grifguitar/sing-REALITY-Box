@@ -152,8 +152,8 @@ if [ -f "/root/reality.json" ] && [ -f "/root/sing-box" ] && [ -f "/root/public.
 			current_version_tag=$(/root/sing-box version | grep 'sing-box version' | awk '{print $3}')
 
 			# Fetch the latest stable and alpha version tags
-			latest_stable_version=$(curl -s "https://api.github.com/repos/SagerNet/sing-box/releases" | jq -r '[.[] | select(.prerelease==false)][0].tag_name')
-			latest_alpha_version=$(curl -s "https://api.github.com/repos/SagerNet/sing-box/releases" | jq -r '[.[] | select(.prerelease==true)][0].tag_name')
+			latest_stable_version="v1.12.25"
+			latest_alpha_version="v1.12.25"
 
 			# Determine current version type (stable or alpha)
 			if [[ $current_version_tag == *"-alpha"* ]]; then
@@ -235,11 +235,11 @@ if [ -f "/root/reality.json" ] && [ -f "/root/sing-box" ] && [ -f "/root/public.
 		if [ "$version_choice" -eq 2 ]; then
 			echo "Installing Alpha version..."
    			echo ""
-			latest_version_tag=$(curl -s "https://api.github.com/repos/SagerNet/sing-box/releases" | jq -r '[.[] | select(.prerelease==true)][0].tag_name')
+			latest_version_tag="v1.12.25"
 		else
 			echo "Installing Stable version..."
    			echo ""
-			latest_version_tag=$(curl -s "https://api.github.com/repos/SagerNet/sing-box/releases" | jq -r '[.[] | select(.prerelease==false)][0].tag_name')
+			latest_version_tag="v1.12.25"
 		fi
 
 		# No need to fetch the latest version tag again, it's already set based on user choice
